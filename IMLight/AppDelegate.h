@@ -7,7 +7,6 @@
 //
 
 #import <Cocoa/Cocoa.h>
-#import "LED.h"
 #import "LaunchAtLoginController.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
@@ -16,10 +15,8 @@
 @property (weak) IBOutlet NSMenuItem *startAtLoginItem;
 @property (strong, nonatomic) NSStatusItem *statusBar;
 
-@property (strong) LED * caps_led;
 @property (strong) LaunchAtLoginController * launchController;
 
-- (void)initLED;
 - (IBAction)setStartAtLogin:(id)sender;
 
 @end

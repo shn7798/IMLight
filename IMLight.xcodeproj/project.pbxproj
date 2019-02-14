@@ -7,13 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		72CE23612215B7B20078DDBE /* keyboard_leds.c in Sources */ = {isa = PBXBuildFile; fileRef = 72CE23602215B7B20078DDBE /* keyboard_leds.c */; };
 		DA6182EB1A0B88D600735728 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = DA6182EA1A0B88D600735728 /* Credits.rtf */; };
 		DAA79EA91A0B65810094CD1A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA79EA81A0B65810094CD1A /* AppDelegate.m */; };
 		DAA79EAB1A0B65810094CD1A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA79EAA1A0B65810094CD1A /* main.m */; };
 		DAA79EAD1A0B65810094CD1A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DAA79EAC1A0B65810094CD1A /* Images.xcassets */; };
 		DAA79EB01A0B65810094CD1A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = DAA79EAE1A0B65810094CD1A /* MainMenu.xib */; };
 		DAA79EBC1A0B65810094CD1A /* IMLightTests.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA79EBB1A0B65810094CD1A /* IMLightTests.m */; };
-		DAA79EC61A0B68850094CD1A /* LED.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA79EC51A0B68850094CD1A /* LED.m */; };
 		DAA79ECE1A0B7F6A0094CD1A /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA79ECC1A0B7F6A0094CD1A /* LaunchAtLoginController.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		DAA79ECF1A0B7F6A0094CD1A /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = DAA79ECD1A0B7F6A0094CD1A /* README.md */; };
 /* End PBXBuildFile section */
@@ -29,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		72CE23602215B7B20078DDBE /* keyboard_leds.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = keyboard_leds.c; sourceTree = "<group>"; };
+		72CE23622215B82F0078DDBE /* keyboard_leds.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = keyboard_leds.h; sourceTree = "<group>"; };
 		DA6182E91A0B851F00735728 /* IMLight.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = IMLight.entitlements; sourceTree = "<group>"; };
 		DA6182EA1A0B88D600735728 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		DAA79EA21A0B65810094CD1A /* IMLight.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = IMLight.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -41,8 +43,6 @@
 		DAA79EB51A0B65810094CD1A /* IMLightTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = IMLightTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAA79EBA1A0B65810094CD1A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DAA79EBB1A0B65810094CD1A /* IMLightTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IMLightTests.m; sourceTree = "<group>"; };
-		DAA79EC51A0B68850094CD1A /* LED.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LED.m; sourceTree = "<group>"; };
-		DAA79EC71A0B688B0094CD1A /* LED.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LED.h; sourceTree = "<group>"; };
 		DAA79ECB1A0B7F6A0094CD1A /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LaunchAtLoginController.h; sourceTree = "<group>"; };
 		DAA79ECC1A0B7F6A0094CD1A /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LaunchAtLoginController.m; sourceTree = "<group>"; };
 		DAA79ECD1A0B7F6A0094CD1A /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -89,8 +89,8 @@
 			children = (
 				DA6182E91A0B851F00735728 /* IMLight.entitlements */,
 				DAA79ED01A0B7F740094CD1A /* LaunchAtLoginController */,
-				DAA79EC71A0B688B0094CD1A /* LED.h */,
-				DAA79EC51A0B68850094CD1A /* LED.m */,
+				72CE23622215B82F0078DDBE /* keyboard_leds.h */,
+				72CE23602215B7B20078DDBE /* keyboard_leds.c */,
 				DAA79EA71A0B65810094CD1A /* AppDelegate.h */,
 				DAA79EA81A0B65810094CD1A /* AppDelegate.m */,
 				DAA79EAC1A0B65810094CD1A /* Images.xcassets */,
@@ -242,8 +242,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DAA79EC61A0B68850094CD1A /* LED.m in Sources */,
 				DAA79ECE1A0B7F6A0094CD1A /* LaunchAtLoginController.m in Sources */,
+				72CE23612215B7B20078DDBE /* keyboard_leds.c in Sources */,
 				DAA79ECF1A0B7F6A0094CD1A /* README.md in Sources */,
 				DAA79EAB1A0B65810094CD1A /* main.m in Sources */,
 				DAA79EA91A0B65810094CD1A /* AppDelegate.m in Sources */,

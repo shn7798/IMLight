@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import <Carbon/Carbon.h>
+#import "keyboard_leds.h"
 
 @interface AppDelegate ()
 
@@ -16,21 +17,12 @@
 
 @implementation AppDelegate
 
-- (void)initLED {
-    self.caps_led = [[LED alloc] initWithUsage:kHIDUsage_LED_CapsLock];
-    NSLog(@"LED inited!");
-}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     self.launchController = [[LaunchAtLoginController alloc] init];
     [self.startAtLoginItem setState:([self.launchController launchAtLogin] ? NSOnState : NSOffState)];
     
-    [[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self
-                                                           selector:@selector(initLED)
-                                                               name:NSWorkspaceDidWakeNotification
-                                                             object:NULL];
-    [self initLED];
-    
+
     [[NSDistributedNotificationCenter defaultCenter]
      addObserverForName:(__bridge NSString *)kTISNotifySelectedKeyboardInputSourceChanged
      object:nil
@@ -44,9 +36,19 @@
              TISInputSourceRef im = (TISInputSourceRef)CFArrayGetValueAtIndex(all_im, i);
              
              CFStringRef im_type = TISGetInputSourceProperty(im, kTISPropertyInputSourceType);
+             CFStringRef im_name = TISGetInputSourceProperty(im, kTISPropertyLocalizedName);
              CFBooleanRef im_selected = TISGetInputSourceProperty(im, kTISPropertyInputSourceIsSelected);
+             
+             
              if (CFBooleanGetValue(im_selected) == YES) {
-                 [self.caps_led setValue:(im_type != kTISTypeKeyboardLayout)];
+                 NSLog(@">>>>>>>>>>>>>>>>>>>>>>>>");
+                 NSLog(@"im_name: %@", im_name);
+                 NSLog(@"im_type: %@", im_type);
+                 NSLog(@"im_selected: %@", im_selected);
+                 NSLog(@"value: %d", im_type != kTISTypeKeyboardLayout);
+                 NSLog(@"=========================");
+                 
+                 manipulate_led(kHIDUsage_LED_CapsLock, im_type != kTISTypeKeyboardLayout);
                  break;
              }
          }
