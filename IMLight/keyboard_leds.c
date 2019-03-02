@@ -91,8 +91,17 @@ find_a_keyboard(void)
                          usageRef);
 
     result = IOServiceGetMatchingService(kIOMasterPortDefault, matchingDictRef);
-
+    if (usageRef) {
+        CFRelease(usageRef);
+    }
+    if (usagePageRef) {
+        CFRelease(usagePageRef);
+    }
+    return result;
 out:
+    if (matchingDictRef) {
+        CFRelease(matchingDictRef);
+    }
     if (usageRef) {
         CFRelease(usageRef);
     }
@@ -179,6 +188,7 @@ find_led_cookies(IOHIDDeviceInterface122** handle)
         }
     }
 
+    CFRelease(elements);
     return;
 }
 
@@ -230,7 +240,8 @@ manipulate_led(UInt32 whichLED, UInt32 value)
 
     create_hid_interface(hidDevice, &hidDeviceInterface);
 
-    find_led_cookies((IOHIDDeviceInterface122 **)hidDeviceInterface);
+    if (!capslock_cookie && !numlock_cookie)
+        find_led_cookies((IOHIDDeviceInterface122 **)hidDeviceInterface);
 
     ioReturnValue = IOObjectRelease(hidDevice);
     if (ioReturnValue != kIOReturnSuccess) {
@@ -284,8 +295,9 @@ manipulate_led(UInt32 whichLED, UInt32 value)
     ioReturnValue = (*hidDeviceInterface)->close(hidDeviceInterface);
 
 out:
-    (void)(*hidDeviceInterface)->Release(hidDeviceInterface);
-
+    if (hidDeviceInterface)
+        (void)(*hidDeviceInterface)->Release(hidDeviceInterface);
+    
     return ioReturnValue;
 }
 
